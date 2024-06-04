@@ -34,17 +34,18 @@ def get_all_tickets():
 # POST --> Criando novo ticket
 @app.route("/create_ticket", methods=['POST'])
 def create_ticket():
+    form = InserirTicket()
     if request.method == "POST":
-        form = InserirTicket(request.form)
-        if form.validate():
-            ticket = Ticket(form.nfe)
-
-        con = sql.connect(DATABASE_PATH)
-        cur = con.cursor()
-        cur.execute("INSERT INTO tickets (NF, DATA, PESO) VALUES (?, ?, ?)", (nf, date, peso))
-        con.commit()
-        con.close()
-        return jsonify({"message": f"Ticket {nf} added successfully!"}), 201
+        if form.validate_on_submit():
+            form_data = form.data
+            print(f"{form_data}")
+            # Fazer a logica por tras do DB e do form_data
+            con = sql.connect(DATABASE_PATH)
+            cur = con.cursor()
+            cur.execute("INSERT INTO tickets (NF, DATA, PESO) VALUES (?, ?, ?)", (nf, date, peso))
+            con.commit()
+            con.close()
+            return jsonify({"message": f"Ticket {nf} added successfully!"}), 201
     return jsonify({"error": "Request must be JSON"}), 400
 
 
