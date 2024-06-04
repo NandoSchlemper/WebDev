@@ -40,6 +40,8 @@ def create_ticket():
             form_data = form.data
             print(f"{form_data}")
             # Fazer a logica por tras do DB e do form_data
+            # https://www.geeksforgeeks.org/flask-wtf-explained-how-to-use-it/
+            # Ver integração do WSL forms com o HTML
             con = sql.connect(DATABASE_PATH)
             cur = con.cursor()
             cur.execute("INSERT INTO tickets (NF, DATA, PESO) VALUES (?, ?, ?)", (nf, date, peso))
