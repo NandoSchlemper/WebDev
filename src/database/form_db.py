@@ -4,15 +4,15 @@ import sqlite3 as sql
 con = sql.connect('form-db.db')
 cur = con.cursor()
 
-# Deletando a tabela 'users' se já existir
-cur.execute('DROP TABLE IF EXISTS users')
+# Deletando a tabela 'tickets' se já existir
+cur.execute('DROP TABLE IF EXISTS tickets')
 
-# Criando a tabela 'users'
+# Criando a tabela 'tickets'
 sql_create_table = '''
-    CREATE TABLE "users" (
-    "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "USERNAME" TEXT NOT NULL,
-    "AGE" INT
+    CREATE TABLE "tickets" (
+    "NF" INTEGER PRIMARY KEY NOT NULL,
+    "DATA" TEXT NOT NULL,
+    "PESO" REAL NOT NULL
     );
     '''
 
