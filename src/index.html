@@ -1,0 +1,16 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>My Form</title> 
+</head> 
+<body> 
+	<h1>My Form</h1> 
+	<form method="post" action="/create_ticket" enctype="multipart/form-data"> 
+		{{ form.csrf_token }} 
+		<p>{{ form.ticket.label }} {{ form.ticket() }}</p> 
+        <p>{{ form.date.label }} {{ form.date() }}</p>
+        <p>{{ form.peso.label }} {{ form.peso() }}</p>
+		<p><input type="submit" value="Submit"></p> 
+	</form> 
+</body> 
+</html>
