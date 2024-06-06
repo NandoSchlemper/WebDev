@@ -13,7 +13,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from src.routes import main
+    from src.routes.ticket_routes import main
     app.register_blueprint(main)
 
     with app.app_context():

@@ -3,7 +3,7 @@ from src import db
 from src.models import Tickets
 from src.forms import TicketForm
 
-main = Blueprint('main', __name__, template_folder='frontend')
+main = Blueprint('main', __name__, template_folder='../frontend')
 
 @main.route('/')
 def index():
@@ -42,4 +42,3 @@ def delete_ticket(nfe):
     db.session.commit()
     flash(f'Ticket numero: {nfe} deletado!', 'success')
     return redirect(url_for('main.index'))
-
