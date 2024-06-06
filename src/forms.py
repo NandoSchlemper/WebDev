@@ -1,9 +1,12 @@
 from flask_wtf import FlaskForm
-import wtforms as wt
-import wtforms.validators as val
+import wtforms as w
 
-class InserirTicket(FlaskForm):
-    ticket = wt.IntegerField('Insira o valor do ticket', validators=[val.DataRequired(), val.Length(1, 25)])
-    data = wt.DateField('Insira a data da descarga', validators=[val.DataRequired(), val.Length(8, 12)])
-    peso = wt.DateField('Insira o peso da NF', validators=[val.DataRequired()])
-    submit = wt.SubmitField('Subimit')
+class TicketForm(FlaskForm):
+    nfe  = w.IntegerField('Nota Fiscal', validators=[w.validators.DataRequired()])
+    placa   = w.StringField('Placa', validators=[w.validators.DataRequired()])
+    tara    = w.FloatField('Peso tara', validators=[w.validators.DataRequired()])
+    peso_total   = w.FloatField('Peso total carregado', validators=[w.validators.DataRequired()])
+    excesso = w.FloatField('Excesso calculado', validators=[w.validators.DataRequired()])
+
+    submit = w.SubmitField('Submit')
+

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Create Ticket</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nfe.label }}<br>
+            {{ form.nfe(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.placa.label }}<br>
+            {{ form.placa(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.tara.label }}<br>
+            {{ form.tara(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.peso_total.label }}<br>
+            {{ form.peso_total(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.excesso.label }}<br>
+            {{ form.excesso(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+{% endblock %}
