@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Tickets</h1>
+    <a href="{{ url_for('main.new_ticket') }}">Create New Ticket</a>
+    <table>
+        <thead>
+            <tr>
+                <th>NFE</th>
+                <th>Placa</th>
+                <th>Tara</th>
+                <th>Peso Total</th>
+                <th>Excesso</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.nfe }}</td>
+                    <td>{{ item.placa }}</td>
+                    <td>{{ item.tara }}</td>
+                    <td>{{ item.peso_total }}</td>
+                    <td>{{ item.excesso }}</td>
+                    <td>
+                        <form action="{{ url_for('main.delete_ticket', nfe=item.nfe) }}" method="POST" style="display:table;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
