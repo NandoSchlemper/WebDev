@@ -14,13 +14,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for ticket in tickets %}
                 <tr>
-                    <td>{{ item.nfe }}</td>
-                    <td>{{ item.placa }}</td>
-                    <td>{{ item.tara }}</td>
-                    <td>{{ item.peso_total }}</td>
-                    <td>{{ item.excesso }}</td>
+                    <td>{{ ticket.nfe }}</td>
+                    <td>{{ ticket.placa }}</td>
+                    <td>{{ ticket.tara }}</td>
+                    <td>{{ ticket.peso_total }}</td>
+                    <td>{{ ticket.excesso }}</td>
                     <td>
                         <form action="{{ url_for('main.delete_ticket', nfe=item.nfe) }}" method="POST" style="display:table;">
                             <button type="submit">Delete</button>

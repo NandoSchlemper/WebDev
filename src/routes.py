@@ -8,7 +8,7 @@ main = Blueprint('main', __name__, template_folder='frontend')
 @main.route('/')
 def index():
     all_tickets_query = Tickets.query.all()
-    return render_template('index.html', items=all_tickets_query)
+    return render_template('index.html', tickets=all_tickets_query)
 
 @main.route('/item/new', methods=['POST', 'GET'])
 def new_ticket():
