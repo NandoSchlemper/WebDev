@@ -10,3 +10,11 @@ class TicketForm(FlaskForm):
 
     submit = w.SubmitField('Submit')
 
+
+class PlacasForm(FlaskForm):
+    placa = w.StringField('Placa', validators=[w.validators.DataRequired()])
+    motorista = w.StringField('Motorista', validators=[w.validators.DataRequired()])
+
+
+class MotoristasForm(FlaskForm):
+    motorista = w.StringField('Motorista', validators=[w.validators.DataRequired()])
