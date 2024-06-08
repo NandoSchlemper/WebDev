@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Tickets</h1>
-    <a href="{{ url_for('main.new_ticket') }}">Create New Ticket</a>
+<h1>Bem vindo a criacao de tickets, veja os tickets ja criados abaixo!</h1>
+<a href="{{ url_for('main.new_ticket') }}">Create New Ticket</a>
     <table>
         <thead>
             <tr>
+                <th>Carregamento</th>
                 <th>NFE</th>
                 <th>Placa</th>
                 <th>Tara</th>
@@ -14,8 +15,10 @@
             </tr>
         </thead>
         <tbody>
+            
             {% for ticket in tickets %}
                 <tr>
+                    <td>{{ ticket.carregamento }}</td>
                     <td>{{ ticket.nfe }}</td>
                     <td>{{ ticket.placa }}</td>
                     <td>{{ ticket.tara }}</td>

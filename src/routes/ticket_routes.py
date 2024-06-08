@@ -3,12 +3,18 @@ from src import db
 from src.models import Tickets
 from src.forms import TicketForm
 
-main = Blueprint('main', __name__, template_folder='../frontend')
+main = Blueprint('main', __name__, template_folder='../frontend/components/create_ticket')
 
 @main.route('/')
 def index():
-    all_tickets_query = Tickets.query.all()
-    return render_template('index.html', tickets=all_tickets_query)
+    return render_template('index.html')
+
+@main.route('/item/view')
+def view():
+    all_tickets = Tickets.query.all()
+
+    
+    return render_template('view.html', tickets=all_tickets)
 
 @main.route('/item/new', methods=['POST', 'GET'])
 def new_ticket():
@@ -19,7 +25,8 @@ def new_ticket():
             flash(f'O ticket com NFE {form.nfe.data} ja existe', 'danger')
             return redirect(url_for('main.new_ticket'))
         
-        ticket = Tickets(nfe = form.nfe.data,
+        ticket = Tickets(carregamento = form.carregamento.data,
+                         nfe = form.nfe.data,
                          placa = form.placa.data,
                          tara = form.tara.data,
                          peso_total = form.peso_total.data,

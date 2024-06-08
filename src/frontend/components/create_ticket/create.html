@@ -4,11 +4,19 @@
     <form method="POST">
         {{ form.hidden_tag() }}
         <div>
+            {{ form.carregamento.label }}<br>
+            <form action="{{url_para_criar_localDeCarregamento}}" method="POST" style="display:table;">
+            <button type="submit">+</button>
+            {{ form.carregamento(size=1) }}<br>
+        </div>
+        <div>
             {{ form.nfe.label }}<br>
             {{ form.nfe(size=32) }}<br>
         </div>
         <div>
             {{ form.placa.label }}<br>
+            <form action="{{url_para_criar_placa}}" method="POST" style="display:table;">
+            <button type="submit">+</button>
             {{ form.placa(size=32) }}<br>
         </div>
         <div>
