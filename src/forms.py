@@ -34,3 +34,7 @@ class MotoristasForm(FlaskForm):
     nome = w.StringField('Motorista', validators=[w.validators.DataRequired(), w.validators.Length(max=55)])
 
     submit = w.SubmitField('Submit')
+    
+    def update(self, mot):
+        mot.nome = self.nome.data
+

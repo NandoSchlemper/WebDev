@@ -12,8 +12,6 @@ def index():
 @main.route('/item/view')
 def view():
     all_tickets = Tickets.query.all()
-
-    
     return render_template('view.html', tickets=all_tickets)
 
 @main.route('/item/new', methods=['POST', 'GET'])
