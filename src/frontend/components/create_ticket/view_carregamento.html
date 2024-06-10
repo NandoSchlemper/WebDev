@@ -1,33 +1,39 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Bem vindo ao cadastro de Carregamentos, veja os carregamentos abaixo!</h1>
-<a href="{{ url_for('main.create_carregamento') }}">Create new Carregamento</a>
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>local</th>
-                <th>GPS</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for carregamento in carregamentos %}
+    <div class="header">
+        <h1>Bem vindo ao cadastro de Carregamentos, veja os carregamentos abaixo!</h1>
+    </div>
+    <a href="{{ url_for('main.create_carregamento') }}" class="cta-button">Create new Carregamento</a>
+    <div class="box">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ carregamento.id }}</td>  
-                    <td>{{ carregamento.local }}</td> 
-                    <td>{{ carregamento.gps }}</td>
-                        <td>
-                            <form action="{{ url_for('main.delete_carregamento', id=carregamento.id) }}" method="POST" style="display:table;">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="{{ url_for('main.update_carregamento', id=carregamento.id) }}" method="POST" style="display:table;">
-                                <button type="submit">update</button>
-                            </form>
-                        </td>
+                    <th>ID</th>
+                    <th>Local</th>
+                    <th>GPS</th>
+                    <th>Ações</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for carregamento in carregamentos %}
+                    <tr>
+                        <td>{{ carregamento.id }}</td>
+                        <td>{{ carregamento.local }}</td>
+                        <td>{{ carregamento.gps }}</td>
+                        <td>
+                            <form action="{{ url_for('main.delete_carregamento', id=carregamento.id) }}" method="POST">
+                                <button type="submit" class="cta-button">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('main.update_carregamento', id=carregamento.id) }}" method="POST">
+                                <button type="submit" class="cta-button">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -1,16 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>{% if mot.nome.data %}Atualizar Motorista{% else %}Criar Motorista{% endif %}</h2>
-    <div class="container">
+    <div class="header">
+        <h2>{% if mot.nome.data %}Atualizar Motorista{% else %}Criar Motorista{% endif %}</h2>
+    </div>
+    <div class="box">
         <form method="post" action="">
             {{ mot.hidden_tag() }}
             <div class="form-group">
                 <label for="nome">Nome do Motorista</label>
-                {{ mot.nome(class="form-control", id="id") }}
+                {{ mot.nome(class="form-control", id="nome") }}
             </div>
             <div class="form-group">
-                {{ mot.submit(class="btn btn-primary") }}
+                {{ mot.submit(class="cta-button") }}
             </div>
         </form>
     </div>

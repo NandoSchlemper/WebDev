@@ -1,31 +1,37 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Bem vindo ao cadastro de motoristas! Segue mots criados abaixo!!</h1>
-<a href="{{ url_for('mot.create_motorista') }}">Create New Mot</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Motorista</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            {% for mot in mots %}
+    <div class="header">
+        <h1>Bem-vindo ao cadastro de motoristas! Veja os motoristas criados abaixo!</h1>
+    </div>
+    <a href="{{ url_for('mot.create_motorista') }}" class="cta-button">Create New Motorista</a>
+    <div class="box">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ mot.id }}</td>
-                    <td>{{ mot.nome }}</td> 
-                    <td>
-                        <form action="{{ url_for('mot.delete_motorista', id=mot.id) }}" method="POST" style="display:table;">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{ url_for('mot.update_motorista', id=mot.id)}}" method="POST" style="display:table;">
-                            <button type="submit">Update</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                <th>Nome</th>
+                    <th>Ações</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for mot in mots %}
+                    <tr>
+                        <td>{{ mot.id }}</td>
+                        <td>{{ mot.nome }}</td>
+                        <td>
+                            <form action="{{ url_for('mot.delete_motorista', id=mot.id) }}" method="POST">
+                                <button type="submit" class="cta-button">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('mot.update_motorista', id=mot.id) }}" method="POST">
+                                <button type="submit" class="cta-button">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -28,7 +28,7 @@ def create_plate():
 
 @placa.route('/placa/<id>/delete', methods=['POST'])
 def delete_plate(id):
-    placa_alvo = Placas.query.filter_by(id=id)
+    placa_alvo = Placas.query.get_or_404(id)
     db.session.delete(placa_alvo)
     db.session.commit()
     return redirect(url_for('placa.view_placas'))

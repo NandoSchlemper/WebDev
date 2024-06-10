@@ -1,18 +1,25 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Hello, Welcome to HH Company</h1>
-    <h2>Com relacao aos tickets:
-        <a href="{{ url_for('main.view') }}">>>Veja os tickets<<</a>
-    </h2>
-    <h2>Com relacao aos Motoristas:
-        <a Href="{{ url_for('mot.view_motorista') }}">>>Veja os motoristas<<</a>
-    </h2>
-    <h2>
-        Com relacao as Placas:
-        <a href="{{ url_for('placa.view_placas') }}">>>Veja as placas<<</a>
-    </h2>
-    <h2>
-        Com relacao aos Carregamentos:
-        <a href="{{ url_for('main.view_carregamento') }}">>>Veja os carregamentos<<</a>
-    </h2>
+    <div class="header">
+        <h1>Hello, Welcome to HH Company</h1>
+    </div>
+    <div class="container">
+        <div class="box">
+            <h2>Com relação aos tickets:</h2>
+            <a href="{{ url_for('main.view') }}" class="cta-button">Veja os tickets</a>
+        </div>
+        <div class="box">
+            <h2>Com relação aos Motoristas:</h2>
+            <a href="{{ url_for('mot.view_motorista') }}" class="cta-button">Veja os motoristas</a>
+        </div>
+        <div class="box">
+            <h2>Com relação às Placas:</h2>
+            <a href="{{ url_for('placa.view_placas') }}" class="cta-button">Veja as placas</a>
+        </div>
+        <div class="box">
+            <h2>Com relação aos Carregamentos:</h2>
+            <a href="{{ url_for('main.view_carregamento') }}" class="cta-button">Veja os carregamentos</a>
+        </div>
+    </div>
 {% endblock %}

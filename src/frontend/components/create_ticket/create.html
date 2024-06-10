@@ -1,38 +1,43 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Create Ticket</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.carregamento.label }}<br>
-            <form action="{{url_para_criar_localDeCarregamento}}" method="POST" style="display:table;">
-            <button type="submit">+</button>
-            {{ form.carregamento(size=1) }}<br>
-        </div>
-        <div>
-            {{ form.nfe.label }}<br>
-            {{ form.nfe(size=32) }}<br>
-        </div>
-        <div>
-            {{ form.placa.label }}<br>
-            <form action="{{url_para_criar_placa}}" method="POST" style="display:table;">
-            <button type="submit">+</button>
-            {{ form.placa(size=32) }}<br>
-        </div>
-        <div>
-            {{ form.tara.label }}<br>
-            {{ form.tara(size=32) }}<br>
-        </div>
-        <div>
-            {{ form.peso_total.label }}<br>
-            {{ form.peso_total(size=32) }}<br>
-        </div>
-        <div>
-            {{ form.excesso.label }}<br>
-            {{ form.excesso(size=32) }}<br>
-        </div>
-        <div>
-            {{ form.submit() }}
-        </div>
-    </form>
+    <div class="header">
+        <h1>Create Ticket</h1>
+    </div>
+    <div class="box">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.carregamento.label }}<br>
+                <form action="{{url_para_criar_localDeCarregamento}}" method="POST" style="display:table;">
+                <button type="submit" class="cta-button">+</button>
+                {{ form.carregamento(size=1, class="form-control") }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.nfe.label }}<br>
+                {{ form.nfe(size=32, class="form-control") }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.placa.label }}<br>
+                <form action="{{url_para_criar_placa}}" method="POST" style="display:table;">
+                <button type="submit" class="cta-button">+</button>
+                {{ form.placa(size=32, class="form-control") }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.tara.label }}<br>
+                {{ form.tara(size=32, class="form-control") }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.peso_total.label }}<br>
+                {{ form.peso_total(size=32, class="form-control") }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.excesso.label }}<br>
+                {{ form.excesso(size=32, class="form-control") }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="cta-button") }}
+            </div>
+        </form>
+    </div>
 {% endblock %}

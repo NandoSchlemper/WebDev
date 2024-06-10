@@ -1,33 +1,39 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Bem vindo ao cadastro de Placas!! Segue Placas ja criadas abaixo!!</h1>
-<a href="{{ url_for('placa.create_plate') }}">Create new placa</a>
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>placa</th>
-                <th>motorista</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for placa in placas %}
+    <div class="header">
+        <h1>Bem vindo ao cadastro de Placas! Veja as placas criadas abaixo!</h1>
+    </div>
+    <a href="{{ url_for('placa.create_plate') }}" class="cta-button">Create new Placa</a>
+    <div class="box">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ placa.id }}</td>  
-                    <td>{{ placa.placa }}</td> 
-                    <td>{{ placa.motorista}}</td>
-                    <td>
-                        <form action="{{ url_for('placa.delete_plate', id=placa.id) }}" method="POST" style="display:table;">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{ url_for('placa.update_placa', id=placa.id)}}" method="POST" style="display:table;">
-                            <button type="submit">Update</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Placa</th>
+                    <th>Motorista</th>
+                    <th>Ações</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for placa in placas %}
+                    <tr>
+                        <td>{{ placa.id }}</td>
+                        <td>{{ placa.placa }}</td>
+                        <td>{{ placa.motorista }}</td>
+                        <td>
+                            <form action="{{ url_for('placa.delete_plate', id=placa.id) }}" method="POST">
+                                <button type="submit" class="cta-button">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('placa.update_placa', id=placa.id) }}" method="POST">
+                                <button type="submit" class="cta-button">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

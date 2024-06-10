@@ -1,36 +1,45 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Bem vindo a criacao de tickets, veja os tickets ja criados abaixo!</h1>
-<a href="{{ url_for('main.new_ticket') }}">Create New Ticket</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Carregamento</th>
-                <th>NFE</th>
-                <th>Placa</th>
-                <th>Tara</th>
-                <th>Peso</th>
-                <th>Excesso</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            {% for ticket in tickets %}
+    <div class="header">
+        <h1>Bem vindo à criação de tickets, veja os tickets já criados abaixo!</h1>
+    </div>
+    <a href="{{ url_for('main.new_ticket') }}" class="cta-button">Create New Ticket</a>
+    <div class="box">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ ticket.carregamento }}</td>
-                    <td>{{ ticket.nfe }}</td>
-                    <td>{{ ticket.placa }}</td>
-                    <td>{{ ticket.tara }}</td>
-                    <td>{{ ticket.peso_total }}</td>
-                    <td>{{ ticket.excesso }}</td>
-                    <td>
-                        <form action="{{ url_for('main.delete_ticket', nfe=ticket.nfe) }}" method="POST" style="display:table;">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
+                    <th>Carregamento</th>
+                    <th>NFE</th>
+                    <th>Placa</th>
+                    <th>Tara</th>
+                    <th>Peso</th>
+                    <th>Excesso</th>
+                    <th>Ações</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <td>{{ ticket.carregamento }}</td>
+                        <td>{{ ticket.nfe }}</td>
+                        <td>{{ ticket.placa }}</td>
+                        <td>{{ ticket.tara }}</td>
+                        <td>{{ ticket.peso_total }}</td>
+                        <td>{{ ticket.excesso }}</td>
+                        <td>
+                            <form action="{{ url_for('main.delete_ticket', nfe=ticket.nfe) }}" method="POST">
+                                <button type="submit" class="cta-button">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('main.update_ticket', nfe=ticket.nfe) }}" method="POST">
+                                <button type="submit" class="cta-button">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
