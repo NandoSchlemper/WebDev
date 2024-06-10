@@ -20,6 +20,11 @@ class TicketForm(FlaskForm):
 class LocalCarregamentoForm(FlaskForm):
     local = w.StringField('Local', validators=[w.validators.DataRequired(), w.validators.Length(max=20)])
     gps = w.StringField('GpsLink', validators=[w.validators.Length(max=122)])
+    submit = w.SubmitField('Submit')
+
+    def update(self, field):
+        field.local = self.local.data
+        field.gps = self.gps.data
 
 
 
@@ -28,6 +33,14 @@ class PlacasForm(FlaskForm):
     motorista = w.StringField('Motorista', validators=[w.validators.DataRequired()])
 
     submit = w.SubmitField('Submit')
+
+    def validar_motorista(self, field):
+        if not Motoristas.query.filter_by(field).first():
+            raise w.validators.ValidationError('Motorista nao encontrado no banco de dados')
+        
+    def update(self, placa):
+        placa.placa = self.placa.data
+        placa.motorista = self.motorista.data
 
 
 class MotoristasForm(FlaskForm):

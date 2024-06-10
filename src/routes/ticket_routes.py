@@ -47,3 +47,46 @@ def delete_ticket(nfe):
     db.session.commit()
     flash(f'Ticket numero: {nfe} deletado!', 'success')
     return redirect(url_for('main.index'))
+
+from src.models import LocalCarregamento
+from src.forms import LocalCarregamentoForm
+
+@main.route('/item/carregamento/view')
+def view_carregamento():
+    all_locals = LocalCarregamento.query.all()
+    return render_template('view_carregamento.html', carregamentos=all_locals)
+
+@main.route('/item/carregamento/new', methods=['POST', 'GET'])
+def create_carregamento():
+    form = LocalCarregamentoForm()
+
+    if form.validate_on_submit():
+        new_carregamento = LocalCarregamento(
+            local = form.local.data,
+            gps = form.gps.data
+        )
+
+        db.session.add(new_carregamento)
+        db.session.commit()
+        flash(f'Local de carregamento: {new_carregamento.local} foi criado!')
+        return redirect(url_for('main.view_carregamento'))
+    return render_template('create_carregamento.html', carregamento=form)
+
+@main.route('/item/<id>/delete_carregamneto', methods=['POST'])
+def delete_carregamento(id):
+    search_carregamento = LocalCarregamento.query.get_or_404(id)
+    db.session.delete(search_carregamento)
+    db.session.commit()
+    return redirect(url_for('main.view_carregamento'))
+
+@main.route('/item/<id>/update_carregamneto', methods=['POST'])
+def update_carregamento(id):
+    search_carregamento = LocalCarregamento.query.get_or_404(id)
+    form = LocalCarregamentoForm(obj=search_carregamento)
+
+    if form.validate_on_submit():
+        form.update(search_carregamento)
+        db.session.commit()
+        flash(f'Local do carregamento cadastrado com sucesso')
+        return redirect(url_for('main.view_carregamento'))
+    return render_template('create_carregamento.html', carregamento=form)

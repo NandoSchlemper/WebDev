@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Bem vindo ao cadastro de Placas!! Segue Placas ja criadas abaixo!!</h1>
+<a href="{{ url_for('placa.create_plate') }}">Create new placa</a>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>placa</th>
+                <th>motorista</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for placa in placas %}
+                <tr>
+                    <td>{{ placa.id }}</td>  
+                    <td>{{ placa.placa }}</td> 
+                    <td>{{ placa.motorista}}</td>
+                    <td>
+                        <form action="{{ url_for('placa.delete_plate', id=placa.id) }}" method="POST" style="display:table;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('placa.update_placa', id=placa.id)}}" method="POST" style="display:table;">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

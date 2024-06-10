@@ -39,7 +39,7 @@ def delete_motorista(id):
     db.session.delete(mot)
     db.session.commit()
     flash(f'Motorista deletado com sucesso', 'sucess')
-    return redirect(url_for('mot.create_motorista'))
+    return redirect(url_for('mot.view_motorista'))
 
 
 @motorista_create.route('/motorista/<int:id>/update', methods=['POST', 'GET'])
@@ -51,7 +51,7 @@ def update_motorista(id):
         form.update(motorista_atual)
         db.session.commit()
         flash(f'Motorista {motorista_atual}, alterado com sucesso!')
-        return redirect(url_for('mot.view'))
+        return redirect(url_for('mot.view_motorista'))
     return render_template('create_driver/create_mot.html', mot=form)
 
 # jinja2.exceptions.TemplateAssertionError: block 'content' defined twice

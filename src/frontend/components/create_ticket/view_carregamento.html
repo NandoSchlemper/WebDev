@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Bem vindo ao cadastro de Carregamentos, veja os carregamentos abaixo!</h1>
+<a href="{{ url_for('main.create_carregamento') }}">Create new Carregamento</a>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>local</th>
+                <th>GPS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carregamento in carregamentos %}
+                <tr>
+                    <td>{{ carregamento.id }}</td>  
+                    <td>{{ carregamento.local }}</td> 
+                    <td>{{ carregamento.gps }}</td>
+                        <td>
+                            <form action="{{ url_for('main.delete_carregamento', id=carregamento.id) }}" method="POST" style="display:table;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('main.update_carregamento', id=carregamento.id) }}" method="POST" style="display:table;">
+                                <button type="submit">update</button>
+                            </form>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
