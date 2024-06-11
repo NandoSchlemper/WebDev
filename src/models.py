@@ -17,7 +17,6 @@ class Placas(db.Model):
     placa = db.Column(db.String(7), unique=True, nullable=False)
 
 
-
 class Tickets(db.Model):
     id         = db.Column(db.Integer, primary_key=True,autoincrement=True)
     carregamento = db.Column(db.String, db.ForeignKey(LocalCarregamento.local), nullable=False)
